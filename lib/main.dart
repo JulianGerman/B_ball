@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
 import 'package:b_ball/firebase_options.dart';
@@ -25,16 +25,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocWrapper(
-      child: MaterialApp(
-        title: 'Bball',
-        theme: CustomThemeData.theme,
-        home: const SplashPage(),
-        routes: {
-          SignUpPage.routeName: ((context) => SignUpPage()),
-          SignInPage.routeName: (context) => SignInPage(),
-          HomePage.routeName: (context) => HomePage(),
-          // ProfilePage.routeName: ((context) => ProfilePage())
-        },
+      child: ScreenUtilInit(
+        designSize: const Size(393, 830),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: ((context, child) => child!),
+        child: MaterialApp(
+          title: 'Bball',
+          theme: CustomThemeData.theme,
+          home: const SplashPage(),
+          routes: {
+            SignUpPage.routeName: ((context) => const SignUpPage()),
+            SignInPage.routeName: (context) => const SignInPage(),
+            HomePage.routeName: (context) => const HomePage(),
+            // ProfilePage.routeName: ((context) => ProfilePage())
+          },
+        ),
       ),
     );
   }

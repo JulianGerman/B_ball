@@ -15,7 +15,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   //Animations:
-
   late final _animationController;
   late final _animation;
 
@@ -36,6 +35,7 @@ class _SplashPageState extends State<SplashPage>
         }
       },
       builder: (context, state) {
+        //TODO: Add splashscreen animation
         return const Scaffold(
           body: Center(
             child: CircularProgressIndicator(),

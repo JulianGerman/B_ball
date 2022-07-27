@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPage extends StatelessWidget {
   static const String routeName = '/signIn';
@@ -8,10 +9,12 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Signin'),
-          automaticallyImplyLeading: false,
+      child: SafeArea(
+        child: Scaffold(
+          body: SingleChildScrollView(
+              child: Column(
+            children: [],
+          )),
         ),
       ),
     );
