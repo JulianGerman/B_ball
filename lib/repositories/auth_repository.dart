@@ -1,0 +1,79 @@
+import 'package:b_ball/constants/db_constants.dart';
+import 'package:b_ball/models/custom_error.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
+
+class AuthRepository {
+  final FirebaseFirestore firebaseFirestore;
+  final fb_auth.FirebaseAuth firebaseAuth;
+
+  AuthRepository({
+    required this.firebaseFirestore,
+    required this.firebaseAuth,
+  });
+
+  Stream<fb_auth.User?> get user => firebaseAuth.userChanges();
+
+  Future<void> signUpWithEmail({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      fb_auth.UserCredential userCredential =
+          await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final signedInUser = userCredential.user!;
+
+      await usersCollection.doc(signedInUser.uid).set({
+        'name': name,
+        'email': email,
+        'profileImage': 'https://picsum.photos/300',
+        'point': 0,
+        'rank': 'bronze',
+      });
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw CustomError(
+        code: e.code,
+        message: e.message ?? ' custom error msg!',
+        plugin: e.plugin,
+      );
+    } catch (e) {
+      throw CustomError(
+        code: 'Exception',
+        message: e.toString(),
+        plugin: '/flutter_error',
+      );
+    }
+  }
+
+  Future<void> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw CustomError(
+        code: e.code,
+        message: e.message ?? ' custom error msg!',
+        plugin: e.plugin,
+      );
+    } catch (e) {
+      throw CustomError(
+        code: 'Exception',
+        message: e.toString(),
+        plugin: '/flutter_error',
+      );
+    }
+  }
+
+  Future<void> signOut() async {
+    firebaseAuth.signOut();
+  }
+}
