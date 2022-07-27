@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
 import 'package:b_ball/firebase_options.dart';
 import 'package:b_ball/injector.dart';
@@ -26,9 +27,7 @@ class MyApp extends StatelessWidget {
     return BlocWrapper(
       child: MaterialApp(
         title: 'Bball',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: CustomThemeData.theme,
         home: const SplashPage(),
         routes: {
           SignUpPage.routeName: ((context) => SignUpPage()),

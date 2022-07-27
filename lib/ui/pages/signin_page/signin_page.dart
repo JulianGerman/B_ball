@@ -6,6 +6,14 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Signin');
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Signin'),
+          automaticallyImplyLeading: false,
+        ),
+      ),
+    );
   }
 }
