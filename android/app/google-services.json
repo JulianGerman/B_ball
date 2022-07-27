@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "518046285186",
+    "project_id": "bball-7d457",
+    "storage_bucket": "bball-7d457.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518046285186:android:e1ca3a2bb583a6bb47e39b",
+        "android_client_info": {
+          "package_name": "com.example.b_ball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518046285186-p3ejmoq101eaekb4d2e0b3j909scstop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRBLesXjEkksIwyZWPje6QTPMDzH0_d34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518046285186-p3ejmoq101eaekb4d2e0b3j909scstop.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "518046285186-82he3dt7aaku3ivv21pqsb9hp87ipp9e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bBall"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

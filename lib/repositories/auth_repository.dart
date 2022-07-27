@@ -49,6 +49,19 @@ class AuthRepository {
     }
   }
 
+  Future<void> signInWithGoogle()async{
+    //TODO: signUp with google
+  }
+
+  Future<void> signInWithFacebook()async{
+    //TODO: signUp with facebook
+    
+  }
+
+  Future<void> signInWithGitHub()async{
+    //TODO: signUp with GitHub
+  }
+
   Future<void> signIn({
     required String email,
     required String password,
