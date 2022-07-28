@@ -1,3 +1,4 @@
+import 'package:b_ball/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -10,16 +11,19 @@ class CustomScaffoldWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: Platform.isIOS ? false : true,
-      child: Scaffold(
-        // To avoid notch:
-        body: Platform.isIOS
-            ? Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: child,
-              )
-            : child,
+    return Container(
+      color: CustomColors.upperBackGroundColor,
+      child: SafeArea(
+        top: Platform.isIOS ? false : true,
+        child: Scaffold(
+          // To avoid notch:
+          body: Platform.isIOS
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: child,
+                )
+              : child,
+        ),
       ),
     );
   }

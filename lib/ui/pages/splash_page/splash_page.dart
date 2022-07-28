@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage>
                 : false;
           });
         } else if (state.authStatus == AuthStatus.authenticated) {
-          Navigator.pushNamed(context, HomePage.routeName);
+          Navigator.pushNamed(context, SignInPage.routeName);
         }
       },
       builder: (context, state) {

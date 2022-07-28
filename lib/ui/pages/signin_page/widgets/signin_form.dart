@@ -1,10 +1,12 @@
 import 'dart:developer';
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
+import 'package:b_ball/ui/global_widgets/custom_elevated_button.dart';
 import 'package:b_ball/ui/pages/signin_page/sign_in_cubit/sign_in_cubit.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:validators/validators.dart';
 
 class SignInForm extends StatefulWidget {
@@ -31,8 +33,7 @@ class _SignInFormState extends State<SignInForm> {
         return Form(
           key: _formKey,
           autovalidateMode: _autovalidateMode,
-          child: ListView(
-            shrinkWrap: true,
+          child: Column(
             children: [
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
@@ -54,7 +55,7 @@ class _SignInFormState extends State<SignInForm> {
                   _email = value;
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               TextFormField(
                 obscureText: true,
                 autocorrect: false,
@@ -75,38 +76,26 @@ class _SignInFormState extends State<SignInForm> {
                   _password = value;
                 },
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
+              SizedBox(height: 20.h),
+              CustomEleveatedButton(
                 onPressed: state.signingStatus == SigningStatus.submitting
                     ? null
                     : _submit,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      state.signingStatus == SigningStatus.submitting
-                          ? Texts.loading
-                          : Texts.signIn,
-                      style: CustomTypography.textStyleH3Bold),
-                ),
+                content: state.signingStatus == SigningStatus.submitting
+                    ? Texts.loading
+                    : Texts.signIn,
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                  CustomColors.buttonColorDarker,
-                )),
+              SizedBox(height: 20.h),
+              CustomEleveatedButton(
+                backgroundColor: CustomColors.buttonColorDarker,
                 onPressed: state.signingStatus == SigningStatus.submitting
                     ? null
                     : () =>
                         Navigator.of(context).pushNamed(SignUpPage.routeName),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    Texts.createNewAccount,
-                    style: CustomTypography.textStyleH3Bold,
-                  ),
-                ),
-              )
+                content: state.signingStatus == SigningStatus.submitting
+                    ? Texts.loading
+                    : Texts.createNewAccount,
+              ),
             ],
           ),
         );

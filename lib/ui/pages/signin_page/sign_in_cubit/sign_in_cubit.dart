@@ -29,4 +29,19 @@ class SignInCubit extends Cubit<SignInState> {
       );
     }
   }
+
+  Future<void> signInWithGoogle() async {
+    emit(state.copyWith(signingStatus: SigningStatus.submitting));
+    try {
+      await authRepository.signInWithGoogle();
+      emit(state.copyWith(signingStatus: SigningStatus.success));
+    } on CustomError catch (e) {
+      emit(
+        state.copyWith(
+          signingStatus: SigningStatus.error,
+          customError: e,
+        ),
+      );
+    }
+  }
 }

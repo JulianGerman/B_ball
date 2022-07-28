@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.I;
 
 void injectorSetup() {
-  getIt.registerSingleton<AuthRepository>(AuthRepository(
+  getIt.registerFactory<AuthRepository>(() => AuthRepository(
       firebaseFirestore: FirebaseFirestore.instance,
       firebaseAuth: FirebaseAuth.instance));
   getIt.registerFactory<AuthBloc>(() => AuthBloc(

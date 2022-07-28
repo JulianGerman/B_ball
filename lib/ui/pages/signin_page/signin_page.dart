@@ -26,7 +26,7 @@ class SignInPage extends StatelessWidget {
               Container(
                 height: 200,
                 width: 200,
-                color: Colors.yellow,
+                color: CustomColors.bottomBackGroundColor,
               ),
               _buildSignInForm()
             ],
@@ -54,8 +54,9 @@ class SignInPage extends StatelessWidget {
             ),
             const CustomDivider(),
           ]),
-          SizedBox(height: 10.h),
+          SizedBox(height: 15.h),
           const SocialLoginRow(),
+          SizedBox(height: 15.h),
           //TODO: Add terms of use and privacy policies.
           const Text(
             Texts.byClickingThisButton,
