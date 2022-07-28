@@ -15,8 +15,8 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   //Animations:
-  late final _animationController;
-  late final _animation;
+  late final AnimationController _animationController;
+  late final Animation _animation;
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,9 @@
+import 'package:b_ball/config/colors.dart';
+import 'package:b_ball/constants/texts.dart';
+import 'package:b_ball/ui/global_widgets/custom_divider.dart';
+import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
+import 'package:b_ball/ui/pages/signin_page/widgets/signin_form.dart';
+import 'package:b_ball/ui/pages/signin_page/widgets/social_login_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,13 +15,53 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-              child: Column(
-            children: [],
-          )),
-        ),
+      child: CustomScaffoldWrapper(
+        child: SingleChildScrollView(
+            child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 100.h),
+              // LOGO PLACEHOLDER:
+              Container(
+                height: 200,
+                width: 200,
+                color: Colors.yellow,
+              ),
+              _buildSignInForm()
+            ],
+          ),
+        )),
+      ),
+    );
+  }
+
+  Padding _buildSignInForm() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        children: [
+          const SignInForm(),
+          SizedBox(height: 15.h),
+          Row(children: [
+            const CustomDivider(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: const Text(
+                Texts.orContinueWith,
+                style: CustomTypography.textStyleH4,
+              ),
+            ),
+            const CustomDivider(),
+          ]),
+          SizedBox(height: 10.h),
+          const SocialLoginRow(),
+          //TODO: Add terms of use and privacy policies.
+          const Text(
+            Texts.byClickingThisButton,
+            style: CustomTypography.textStyleH6,
+          )
+        ],
       ),
     );
   }
