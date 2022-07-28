@@ -21,8 +21,11 @@ class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+
+  // TextFields:
   String? _email;
   String? _password;
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +63,24 @@ class _SignInFormState extends State<SignInForm> {
               ),
               SizedBox(height: 20.h),
               TextFormField(
-                obscureText: true,
+                obscureText: _obscurePassword,
                 autocorrect: false,
-                decoration: const InputDecoration(
-                  labelText: Texts.password,
-                  prefixIcon: Icon(Icons.lock),
-                ),
+                decoration: InputDecoration(
+                    labelText: Texts.password,
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      onPressed: (() {
+                        _obscurePassword = !_obscurePassword;
+                        if (mounted) setState(() {});
+                      }),
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.password
+                            : Icons.remove_red_eye,
+                        color: CustomColors.white,
+                      ),
+                      splashColor: Colors.transparent,
+                    )),
                 validator: (String? value) {
                   if (value == null || value.trim().isEmpty) {
                     return Texts.passwordRequired;

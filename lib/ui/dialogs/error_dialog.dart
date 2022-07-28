@@ -11,11 +11,11 @@ void errorDialog(BuildContext context, CustomError e) {
       builder: (context) {
         return AlertDialog(
           title: Text(e.code),
-          content: Text(e.plugin + '\n' + e.message),
+          content:  Text('${e.plugin}\n${e.message}'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(Texts.ok),
+              child: const Text(Texts.ok),
             )
           ],
         );
