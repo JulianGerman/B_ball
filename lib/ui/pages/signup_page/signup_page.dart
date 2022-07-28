@@ -1,5 +1,9 @@
+import 'package:b_ball/config/colors.dart';
+import 'package:b_ball/constants/texts.dart';
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
+import 'package:b_ball/ui/pages/signup_page/widgets/sitgnup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpPage extends StatelessWidget {
   static const String routeName = '/signUp';
@@ -8,18 +12,47 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffoldWrapper(
-        child: Column(
-      children: [
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-        Text('ok'),
-      ],
-    ));
+        automaticallyImplyLeading: true,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 100.h),
+                // LOGO PLACEHOLDER:
+                Container(
+                  height: 200,
+                  width: 200,
+                  color: CustomColors.bottomBackGroundColor,
+                  child: const Text(
+                    'LOGOPLACEHOLDER',
+                    style: CustomTypography.textStyleH4,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                const Text(
+                  Texts.signIn,
+                  style: CustomTypography.textStyleH2,
+                ),
+                SizedBox(height: 10.h),
+                _buildSignUpForm(),
+              ],
+            ),
+          ),
+        ));
+  }
+
+  Padding _buildSignUpForm() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        children: [
+          SignUpForm(),
+          SizedBox(height: 15.h),
+          SizedBox(height: 15.h),
+          SizedBox(height: 15.h),
+        ],
+      ),
+    );
   }
 }

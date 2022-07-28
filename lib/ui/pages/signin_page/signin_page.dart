@@ -27,6 +27,11 @@ class SignInPage extends StatelessWidget {
                 height: 200,
                 width: 200,
                 color: CustomColors.bottomBackGroundColor,
+                child: const Text(
+                  'LOGOPLACEHOLDER',
+                  style: CustomTypography.textStyleH4,
+                  textAlign: TextAlign.center,
+                ),
               ),
               _buildSignInForm()
             ],

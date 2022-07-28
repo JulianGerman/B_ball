@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
+import 'package:b_ball/ui/dialogs/error_dialog.dart';
 import 'package:b_ball/ui/global_widgets/custom_elevated_button.dart';
-import 'package:b_ball/ui/pages/signin_page/sign_in_cubit/sign_in_cubit.dart';
+import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,9 @@ class _SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state.signingStatus == SigningStatus.error) {
+          errorDialog(context, state.customError);
+        }
       },
       builder: (context, state) {
         return Form(
@@ -96,6 +99,27 @@ class _SignInFormState extends State<SignInForm> {
                     ? Texts.loading
                     : Texts.createNewAccount,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.all(0),
+                      ),
+                      overlayColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.transparent),
+                    ),
+                    child: Text(
+                      Texts.forgotPassword,
+                      style: CustomTypography.textStyleH5
+                          .copyWith(decoration: TextDecoration.underline),
+                    ),
+                  ),
+                  SizedBox(width: 25.w),
+                ],
+              ),
             ],
           ),
         );
@@ -104,6 +128,7 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void _submit() {
+    // getIt.get<AuthRepository>().signOut();
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 
@@ -112,8 +137,7 @@ class _SignInFormState extends State<SignInForm> {
 
     form.save();
 
-    log('email: $_email, password: $_password');
-
     context.read<SignInCubit>().signIn(email: _email!, password: _password!);
+    log('email: $_email, password: $_password');
   }
 }
