@@ -3,6 +3,7 @@ import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
 import 'package:b_ball/ui/dialogs/error_dialog.dart';
 import 'package:b_ball/ui/global_widgets/custom_elevated_button.dart';
+import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,10 @@ class _SignInFormState extends State<SignInForm> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      PasswordResetPage.routeName,
+                    ),
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
                         const EdgeInsets.all(0),

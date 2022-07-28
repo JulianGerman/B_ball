@@ -13,7 +13,7 @@ class AuthRepository {
     required this.firebaseAuth,
   });
 
-  Stream<fb_auth.User?> get user => firebaseAuth.authStateChanges();
+  Stream<fb_auth.User?> get user => firebaseAuth.idTokenChanges();
 
   Future<void> signUpWithEmail({
     required String name,
@@ -61,7 +61,8 @@ class AuthRepository {
           await googleUser?.authentication;
 
       // Create a new credential
-      final fb_auth.AuthCredential credential = fb_auth.GoogleAuthProvider.credential(
+      final fb_auth.AuthCredential credential =
+          fb_auth.GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
@@ -92,7 +93,7 @@ class AuthRepository {
     //TODO: signUp with GitHub
   }
 
-  Future<void> signIn({
+  Future<void> signInWithEmail({
     required String email,
     required String password,
   }) async {
@@ -101,6 +102,24 @@ class AuthRepository {
         email: email,
         password: password,
       );
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw CustomError(
+        code: e.code,
+        message: e.message ?? ' custom error msg!',
+        plugin: e.plugin,
+      );
+    } catch (e) {
+      throw CustomError(
+        code: 'Exception',
+        message: e.toString(),
+        plugin: '/flutter_error',
+      );
+    }
+  }
+
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email);
     } on fb_auth.FirebaseAuthException catch (e) {
       throw CustomError(
         code: e.code,
