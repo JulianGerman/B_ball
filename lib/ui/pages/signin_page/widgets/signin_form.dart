@@ -19,8 +19,8 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
+  
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
   // TextFields:

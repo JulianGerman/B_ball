@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocWrapper(
       child: ScreenUtilInit(
-        designSize: const Size(393, 830),
+        designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: ((context, child) => child!),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             SignUpPage.routeName: ((context) => const SignUpPage()),
             SignInPage.routeName: (context) => const SignInPage(),
             HomePage.routeName: (context) => const HomePage(),
-            PasswordResetPage.routeName: (context) => const PasswordResetPage(),
+            PasswordResetPage.routeName: (context) => PasswordResetPage(),
             // ProfilePage.routeName: ((context) => ProfilePage())
           },
         ),

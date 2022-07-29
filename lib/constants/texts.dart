@@ -15,4 +15,8 @@ class Texts {
   static const String ok = 'OK';
   static const String forgotPassword = 'Forgot password ?';
   static const String signUp = 'Sign up';
+  static const String resetPassword = 'Reset password';
+  static const String sendPasswordResetEmail = 'Send password\'s reset e-mail';
+  static const String pleaseEnterYourEmailAddress =
+      'Please enter Your Email Address to receive a password\'s reset e-mail.';
 }
