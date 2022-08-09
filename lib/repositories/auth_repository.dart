@@ -51,7 +51,7 @@ class AuthRepository {
     }
   }
 
-  Future<fb_auth.UserCredential> signInWithGoogle() async {
+  Future<fb_auth.UserCredential?> signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
       clientId: DefaultFirebaseOptions.currentPlatform.iosClientId,
     );
@@ -59,15 +59,17 @@ class AuthRepository {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
+      if (googleUser == null) return null;
+
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       // Create a new credential
       final fb_auth.AuthCredential credential =
           fb_auth.GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       // Once signed in, return the UserCredential
@@ -79,8 +81,6 @@ class AuthRepository {
         message: e.message ?? ' custom error msg!',
         plugin: e.plugin,
       );
-    } catch (e) {
-      throw const CustomError(message: 'Try again!');
     }
   }
 

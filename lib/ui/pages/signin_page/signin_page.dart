@@ -21,7 +21,7 @@ class SignInPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 100.h),
+              SizedBox(height: 80.h),
               // LOGO PLACEHOLDER:
               Container(
                 height: 200,
@@ -66,7 +66,8 @@ class SignInPage extends StatelessWidget {
           const Text(
             Texts.byClickingThisButton,
             style: CustomTypography.textStyleH6,
-          )
+          ),
+          SizedBox(height: 10.h),
         ],
       ),
     );
