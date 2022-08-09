@@ -1,4 +1,5 @@
 import 'package:b_ball/constants/db_constants.dart';
+import 'package:b_ball/firebase_options.dart';
 import 'package:b_ball/models/custom_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
@@ -51,7 +52,9 @@ class AuthRepository {
   }
 
   Future<fb_auth.UserCredential> signInWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId: DefaultFirebaseOptions.currentPlatform.iosClientId,
+    );
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
@@ -77,11 +80,7 @@ class AuthRepository {
         plugin: e.plugin,
       );
     } catch (e) {
-      throw CustomError(
-        code: 'Exception',
-        message: e.toString(),
-        plugin: '/flutter_error',
-      );
+      throw const CustomError(message: 'Try again!');
     }
   }
 
