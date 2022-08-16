@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         builder: ((context, child) => child!),
         child: MaterialApp(
           title: 'Bball',
+          debugShowCheckedModeBanner: false,
           theme: CustomThemeData.theme,
           home: const SplashPage(),
           routes: {

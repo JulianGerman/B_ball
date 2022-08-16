@@ -31,28 +31,14 @@ class SignUpPage extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 const Text(
-                  Texts.signIn,
+                  Texts.signUp,
                   style: CustomTypography.textStyleH2,
                 ),
                 SizedBox(height: 10.h),
-                _buildSignUpForm(),
+                SignUpForm(),
               ],
             ),
           ),
         ));
-  }
-
-  Padding _buildSignUpForm() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
-        children: [
-          SignUpForm(),
-          SizedBox(height: 15.h),
-          SizedBox(height: 15.h),
-          SizedBox(height: 15.h),
-        ],
-      ),
-    );
   }
 }

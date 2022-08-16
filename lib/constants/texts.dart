@@ -19,4 +19,5 @@ class Texts {
   static const String sendPasswordResetEmail = 'Send password\'s reset e-mail';
   static const String pleaseEnterYourEmailAddress =
       'Please enter Your Email Address to receive a password\'s reset e-mail.';
+  static const String confirmPassword = 'Confirm password';
 }

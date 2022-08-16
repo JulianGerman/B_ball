@@ -12,7 +12,7 @@ class SocialLoginRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        //TODO: Add google, fb, github signIn
+        //TODO: Add fb, github signIn
         _buildButton(
           SocialLoginButtonType.google,
           () => context.read<SignInCubit>().signInWithGoogle(),

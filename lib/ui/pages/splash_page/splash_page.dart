@@ -1,4 +1,5 @@
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
+import 'package:b_ball/ui/pages/home_page/home_page.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class _SplashPageState extends State<SplashPage>
                 : false;
           });
         } else if (state.authStatus == AuthStatus.authenticated) {
-          Navigator.pushNamed(context, SignInPage.routeName);
+          Navigator.pushNamed(context, HomePage.routeName);
         }
       },
       builder: (context, state) {
