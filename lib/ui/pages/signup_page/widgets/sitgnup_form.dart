@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
+import 'package:b_ball/ui/dialogs/error_dialog.dart';
 import 'package:b_ball/ui/global_widgets/custom_elevated_button.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
@@ -23,15 +23,17 @@ class _SignUpFormState extends State<SignUpForm> {
   // TextFields:
   String? _email;
   String? _password;
+  String? _name;
   bool _obscurePassword = true;
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        // if (state.s == SigningStatus.error) {
-        //   errorDialog(context, state.customError);
-        // }
+        if (state.signUpStatus == SignUpStatus.error) {
+          errorDialog(context, state.customError);
+        }
       },
       builder: (context, state) {
         return Padding(
@@ -41,6 +43,25 @@ class _SignUpFormState extends State<SignUpForm> {
             autovalidateMode: _autovalidateMode,
             child: Column(
               children: [
+                TextFormField(
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                    labelText: Texts.name,
+                    prefixIcon: Icon(Icons.person),
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return Texts.nameRequired;
+                    }
+                    if (!value.contains(RegExp('[a-zA-Z]'))) {
+                      return Texts.onlyLetters;
+                    }
+                    return null;
+                  },
+                  onSaved: (String? value) {
+                    _name = value;
+                  },
+                ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
@@ -63,6 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
                 SizedBox(height: 20.h),
                 TextFormField(
+                  controller: _passwordController,
                   obscureText: _obscurePassword,
                   autocorrect: false,
                   decoration: InputDecoration(
@@ -98,9 +120,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 TextFormField(
                   obscureText: _obscurePassword,
                   autocorrect: false,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: Texts.confirmPassword,
-                    prefixIcon: const Icon(Icons.lock),
+                    prefixIcon: Icon(Icons.lock),
                   ),
                   validator: (String? value) {
                     if (value == null || value.trim().isEmpty) {
@@ -109,18 +131,17 @@ class _SignUpFormState extends State<SignUpForm> {
                     if (value.trim().length < 6) {
                       return Texts.passwordValidationError;
                     }
-                    if (value.trim() != _password) {
-                      return 'niedziala';
+                    if (value.trim() != _passwordController.text) {
+                      return Texts.passwordsDoesntMatch;
                     }
                     return null;
                   },
                 ),
                 SizedBox(height: 20.h),
                 CustomEleveatedButton(
-                  // onPressed: state.signingStatus == SigningStatus.submitting
-                  //     ? null
-                  //     : _submit,
-                  onPressed: _submit,
+                  onPressed: state.signUpStatus == SignUpStatus.submitting
+                      ? null
+                      : _submit,
                   content: Texts.signUp,
                 ),
                 SizedBox(height: 20.h),
@@ -133,7 +154,7 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _submit() {
-    print(_password);
+    print(_passwordController.text);
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 
@@ -141,8 +162,9 @@ class _SignUpFormState extends State<SignUpForm> {
     if (form == null || !form.validate()) return;
 
     form.save();
-
-    // context.read<SignUpCubit>().signIn(email: _email!, password: _password!);
+    context
+        .read<SignUpCubit>()
+        .signUp(name: _name!, email: _email!, password: _password!);
     log('email: $_email, password: $_password');
   }
 }

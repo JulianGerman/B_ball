@@ -5,6 +5,7 @@ class Texts {
   static const String passwordRequired = 'Password required';
   static const String passwordValidationError =
       'Your password should be more than 6!';
+  static const String passwordsDoesntMatch = 'Passwords doesn\'t match!';
   static const String loading = 'Loading';
   static const String email = 'Email';
   static const String emailRequired = 'Email is required';
@@ -20,4 +21,7 @@ class Texts {
   static const String pleaseEnterYourEmailAddress =
       'Please enter Your Email Address to receive a password\'s reset e-mail.';
   static const String confirmPassword = 'Confirm password';
+  static const String name = 'Your name';
+  static const String onlyLetters = 'Name field should contains only letters.';
+  static const String nameRequired = 'Name is required';
 }

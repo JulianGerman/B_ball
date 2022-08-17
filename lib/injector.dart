@@ -20,7 +20,9 @@ void injectorSetup() {
   getIt.registerFactory<SignInCubit>(() => SignInCubit(
         authRepository: getIt.get<AuthRepository>(),
       ));
-  getIt.registerFactory<SignUpCubit>(() => SignUpCubit());
+  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(
+        authRepository: getIt.get<AuthRepository>(),
+      ));
   getIt.registerFactory<PasswordResetCubit>(() => PasswordResetCubit(
         authRepository: getIt.get<AuthRepository>(),
       ));

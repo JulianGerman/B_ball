@@ -35,7 +35,7 @@ class SignUpPage extends StatelessWidget {
                   style: CustomTypography.textStyleH2,
                 ),
                 SizedBox(height: 10.h),
-                SignUpForm(),
+                const SignUpForm(),
               ],
             ),
           ),
