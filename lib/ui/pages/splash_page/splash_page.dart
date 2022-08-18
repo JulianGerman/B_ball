@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
+import 'package:b_ball/ui/global_widgets/custom_indicator.dart';
 import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_page.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,8 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   //Animations:
-  late final AnimationController _animationController;
-  late final Animation _animation;
+  // late final AnimationController _animationController;
+  // late final Animation _animation;
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,14 @@ class _SplashPageState extends State<SplashPage>
           });
         } else if (state.authStatus == AuthStatus.authenticated) {
           Navigator.pushNamed(context, PageWrapper.routeName);
+          log('user: ${state.user}');
         }
       },
       builder: (context, state) {
         //TODO: Add splashscreen animation
         return const Scaffold(
           body: Center(
-            child: CircularProgressIndicator(),
+            child: CustomIndicator(),
           ),
         );
       },

@@ -1,7 +1,9 @@
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
 import 'package:b_ball/injector.dart';
 import 'package:b_ball/repositories/auth_repository.dart';
+import 'package:b_ball/repositories/user_collection_repository.dart';
 import 'package:b_ball/ui/pages/password_reset_page/cubit/password_reset_cubit.dart';
+import 'package:b_ball/ui/pages/profile_page/user_cubit/user_cubit.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,9 @@ class BlocWrapper extends StatelessWidget {
           RepositoryProvider(
             create: (context) => getIt.get<AuthRepository>(),
           ),
+          RepositoryProvider(
+            create: (context) => getIt.get<UserCollectionRepository>(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -35,6 +40,9 @@ class BlocWrapper extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => getIt.get<SignUpCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<UserCubit>(),
             )
           ],
           child: child,

@@ -1,5 +1,4 @@
 import 'package:b_ball/config/colors.dart';
-import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
 import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/home_page/home_page.dart';
 import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
@@ -20,6 +19,8 @@ class _PageWrapperState extends State<PageWrapper>
     with SingleTickerProviderStateMixin {
   late final Animation<double> _gamePadAnimation;
   late final AnimationController _gamePadAnimationController;
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   @override
   void initState() {
@@ -49,39 +50,32 @@ class _PageWrapperState extends State<PageWrapper>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: CustomScaffoldWrapper(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: PersistentTabView(
-              context,
-              screens: _buildScreens(),
-              items: _navBarsItems(),
-              confineInSafeArea: false,
-              backgroundColor: CustomColors.upperBackGroundColor,
-              decoration: NavBarDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                colorBehindNavBar: CustomColors.upperBackGroundColor,
-                border: Border.all(
-                  color: CustomColors.buttonColor,
-                ),
-              ),
-              itemAnimationProperties: const ItemAnimationProperties(
-                duration: Duration(milliseconds: 200),
-                curve: Curves.ease,
-              ),
-              screenTransitionAnimation: const ScreenTransitionAnimation(
-                animateTabTransition: true,
-                curve: Curves.ease,
-                duration: Duration(milliseconds: 200),
-              ),
-              navBarStyle: NavBarStyle.style15,
-            ),
-          ),
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      onWillPop: ((_) async => false),
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+      confineInSafeArea: false,
+      backgroundColor: CustomColors.upperBackGroundColor,
+      decoration: NavBarDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        colorBehindNavBar: CustomColors.upperBackGroundColor,
+        border: Border.all(
+          color: CustomColors.buttonColor,
         ),
       ),
+      itemAnimationProperties: const ItemAnimationProperties(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      ),
+      screenTransitionAnimation: const ScreenTransitionAnimation(
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      navBarStyle: NavBarStyle.style15,
     );
   }
 

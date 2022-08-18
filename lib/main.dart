@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
 import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
@@ -18,7 +17,6 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  log(DefaultFirebaseOptions.currentPlatform.toString());
   injectorSetup();
   runApp(const MyApp());
 }

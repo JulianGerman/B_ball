@@ -9,7 +9,7 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: CustomScaffoldWrapper(
+      child: const CustomScaffoldWrapper(
         child: Center(
           child: Text('Game'),
         ),

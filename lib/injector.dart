@@ -1,6 +1,8 @@
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
 import 'package:b_ball/repositories/auth_repository.dart';
+import 'package:b_ball/repositories/user_collection_repository.dart';
 import 'package:b_ball/ui/pages/password_reset_page/cubit/password_reset_cubit.dart';
+import 'package:b_ball/ui/pages/profile_page/user_cubit/user_cubit.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_cubit/sign_up_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +16,8 @@ void injectorSetup() {
         firebaseFirestore: FirebaseFirestore.instance,
         firebaseAuth: FirebaseAuth.instance,
       ));
+  getIt.registerFactory<UserCollectionRepository>(
+      () => UserCollectionRepository());
   getIt.registerFactory<AuthBloc>(() => AuthBloc(
         authRepository: getIt.get<AuthRepository>(),
       ));
@@ -25,5 +29,8 @@ void injectorSetup() {
       ));
   getIt.registerFactory<PasswordResetCubit>(() => PasswordResetCubit(
         authRepository: getIt.get<AuthRepository>(),
+      ));
+  getIt.registerFactory<UserCubit>(() => UserCubit(
+        userCollectionRepository: getIt.get<UserCollectionRepository>(),
       ));
 }

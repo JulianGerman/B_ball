@@ -147,7 +147,6 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void _submit() {
-    // getIt.get<AuthRepository>().signOut();
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 
