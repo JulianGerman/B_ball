@@ -1,7 +1,9 @@
 import 'package:b_ball/constants/db_constants.dart';
+import 'package:b_ball/firebase_options.dart';
 import 'package:b_ball/models/custom_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
   final FirebaseFirestore firebaseFirestore;
@@ -12,7 +14,7 @@ class AuthRepository {
     required this.firebaseAuth,
   });
 
-  Stream<fb_auth.User?> get user => firebaseAuth.userChanges();
+  Stream<fb_auth.User?> get user => firebaseAuth.idTokenChanges();
 
   Future<void> signUpWithEmail({
     required String name,
@@ -49,20 +51,48 @@ class AuthRepository {
     }
   }
 
-  Future<void> signInWithGoogle()async{
-    //TODO: signUp with google
+  Future<fb_auth.UserCredential?> signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId: DefaultFirebaseOptions.currentPlatform.iosClientId,
+    );
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) return null;
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Create a new credential
+      final fb_auth.AuthCredential credential =
+          fb_auth.GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await fb_auth.FirebaseAuth.instance
+          .signInWithCredential(credential);
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw CustomError(
+        code: e.code,
+        message: e.message ?? ' custom error msg!',
+        plugin: e.plugin,
+      );
+    }
   }
 
-  Future<void> signInWithFacebook()async{
+  Future<void> signInWithFacebook() async {
     //TODO: signUp with facebook
-    
   }
 
-  Future<void> signInWithGitHub()async{
+  Future<void> signInWithGitHub() async {
     //TODO: signUp with GitHub
   }
 
-  Future<void> signIn({
+  Future<void> signInWithEmail({
     required String email,
     required String password,
   }) async {
@@ -71,6 +101,24 @@ class AuthRepository {
         email: email,
         password: password,
       );
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw CustomError(
+        code: e.code,
+        message: e.message ?? ' custom error msg!',
+        plugin: e.plugin,
+      );
+    } catch (e) {
+      throw CustomError(
+        code: 'Exception',
+        message: e.toString(),
+        plugin: '/flutter_error',
+      );
+    }
+  }
+
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email);
     } on fb_auth.FirebaseAuthException catch (e) {
       throw CustomError(
         code: e.code,

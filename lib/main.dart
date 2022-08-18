@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
@@ -26,18 +27,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocWrapper(
       child: ScreenUtilInit(
-        designSize: const Size(393, 830),
+        designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: ((context, child) => child!),
         child: MaterialApp(
           title: 'Bball',
+          debugShowCheckedModeBanner: false,
           theme: CustomThemeData.theme,
           home: const SplashPage(),
           routes: {
             SignUpPage.routeName: ((context) => const SignUpPage()),
             SignInPage.routeName: (context) => const SignInPage(),
             HomePage.routeName: (context) => const HomePage(),
+            PasswordResetPage.routeName: (context) => const PasswordResetPage(),
             // ProfilePage.routeName: ((context) => ProfilePage())
           },
         ),
