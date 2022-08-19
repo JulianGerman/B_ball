@@ -1,4 +1,7 @@
-import 'dart:developer';
+import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
+import 'package:b_ball/ui/pages/game_page/game_page.dart';
+import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
+import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
@@ -14,7 +17,6 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  log(DefaultFirebaseOptions.currentPlatform.toString());
   injectorSetup();
   runApp(const MyApp());
 }
@@ -26,19 +28,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocWrapper(
       child: ScreenUtilInit(
-        designSize: const Size(393, 830),
+        designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: ((context, child) => child!),
         child: MaterialApp(
           title: 'Bball',
+          debugShowCheckedModeBanner: false,
           theme: CustomThemeData.theme,
           home: const SplashPage(),
           routes: {
             SignUpPage.routeName: ((context) => const SignUpPage()),
             SignInPage.routeName: (context) => const SignInPage(),
             HomePage.routeName: (context) => const HomePage(),
-            // ProfilePage.routeName: ((context) => ProfilePage())
+            PasswordResetPage.routeName: (context) => const PasswordResetPage(),
+            PageWrapper.routeName: (context) => const PageWrapper(),
+            ProfilePage.routeName: (context) => const ProfilePage(),
+            GamePage.routeName: (context) => const GamePage(),
           },
         ),
       ),

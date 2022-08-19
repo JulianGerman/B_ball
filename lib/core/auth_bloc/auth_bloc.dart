@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     authSubscription = authRepository.user.listen((fb_auth.User? user) {
       add(AuthStateChangedEvent(user: user));
     });
+    
     on<AuthStateChangedEvent>((event, emit) {
       if (event.user != null) {
         emit(
@@ -35,7 +36,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       log(state.authStatus.toString());
     });
+
     on<SignOutRequestedEvent>((event, emit) async {
+      log('signOut');
       await authRepository.signOut();
     });
   }
