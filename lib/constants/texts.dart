@@ -24,4 +24,11 @@ class Texts {
   static const String name = 'Your name';
   static const String onlyLetters = 'Name field should contains only letters.';
   static const String nameRequired = 'Name is required';
+  static const String myProfile = 'My profile';
+  static const String signOut = 'Sign out';
+  static const String rank = 'Rank';
+  static const String level = 'Level';
+  static const String xpPoints = 'XP Points';
+  static const String recentlyUsedBalls = 'Recently used balls';
+  static const String lastGames = 'Last games';
 }

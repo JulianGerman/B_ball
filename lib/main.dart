@@ -1,5 +1,7 @@
-import 'dart:developer';
+import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
+import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
+import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
@@ -15,7 +17,6 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  log(DefaultFirebaseOptions.currentPlatform.toString());
   injectorSetup();
   runApp(const MyApp());
 }
@@ -41,7 +42,9 @@ class MyApp extends StatelessWidget {
             SignInPage.routeName: (context) => const SignInPage(),
             HomePage.routeName: (context) => const HomePage(),
             PasswordResetPage.routeName: (context) => const PasswordResetPage(),
-            // ProfilePage.routeName: ((context) => ProfilePage())
+            PageWrapper.routeName: (context) => const PageWrapper(),
+            ProfilePage.routeName: (context) => const ProfilePage(),
+            GamePage.routeName: (context) => const GamePage(),
           },
         ),
       ),

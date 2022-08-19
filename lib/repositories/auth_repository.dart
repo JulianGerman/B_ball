@@ -33,8 +33,9 @@ class AuthRepository {
         'name': name,
         'email': email,
         'profileImage': 'https://picsum.photos/300',
-        'point': 0,
+        'xpPoints': 0,
         'rank': 'bronze',
+        'level': 0,
       });
     } on fb_auth.FirebaseAuthException catch (e) {
       throw CustomError(

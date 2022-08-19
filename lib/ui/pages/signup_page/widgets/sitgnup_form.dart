@@ -154,7 +154,6 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _submit() {
-    print(_passwordController.text);
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 

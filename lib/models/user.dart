@@ -8,16 +8,18 @@ class User extends Equatable {
   final String name;
   final String email;
   final String profileImage;
-  final int point;
+  final int xpPoints;
   final String rank;
+  final int level;
 
   const User({
     required this.id,
     required this.name,
     required this.email,
     required this.profileImage,
-    required this.point,
+    required this.xpPoints,
     required this.rank,
+    required this.level,
   });
 
   factory User.fromDoc(DocumentSnapshot userDoc) {
@@ -27,9 +29,10 @@ class User extends Equatable {
       id: userDoc.id,
       name: userData!['name'],
       email: userData['email'],
-      point: userData['point'],
+      xpPoints: userData['xpPoints'],
       profileImage: userData['profileImage'],
       rank: userData['rank'],
+      level: userData['level'],
     );
   }
   factory User.initialUser() {
@@ -38,8 +41,9 @@ class User extends Equatable {
       name: '',
       email: '',
       profileImage: '',
-      point: -1,
+      xpPoints: -1,
       rank: '',
+      level: 0,
     );
   }
   @override
@@ -49,7 +53,7 @@ class User extends Equatable {
       name,
       email,
       profileImage,
-      point,
+      xpPoints,
       rank,
     ];
   }
@@ -60,7 +64,7 @@ class User extends Equatable {
       'name': name,
       'email': email,
       'profileImage': profileImage,
-      'point': point,
+      'xpPoints': xpPoints,
       'rank': rank,
     };
   }
@@ -71,8 +75,9 @@ class User extends Equatable {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       profileImage: map['profileImage'] ?? '',
-      point: map['point']?.toInt() ?? 0,
+      xpPoints: map['xpPoints']?.toInt() ?? 0,
       rank: map['rank'] ?? '',
+      level: map['level']?.toInt() ?? 0,
     );
   }
 
