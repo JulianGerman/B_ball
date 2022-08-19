@@ -1,4 +1,5 @@
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
+import 'package:b_ball/global_blocs/game_bloc/game_bloc.dart';
 import 'package:b_ball/injector.dart';
 import 'package:b_ball/repositories/auth_repository.dart';
 import 'package:b_ball/repositories/user_collection_repository.dart';
@@ -43,6 +44,9 @@ class BlocWrapper extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => getIt.get<UserCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<GameBloc>(),
             )
           ],
           child: child,

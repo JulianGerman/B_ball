@@ -1,4 +1,5 @@
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
+import 'package:b_ball/global_blocs/game_bloc/game_bloc.dart';
 import 'package:b_ball/repositories/auth_repository.dart';
 import 'package:b_ball/repositories/user_collection_repository.dart';
 import 'package:b_ball/ui/pages/password_reset_page/cubit/password_reset_cubit.dart';
@@ -33,4 +34,5 @@ void injectorSetup() {
   getIt.registerFactory<UserCubit>(() => UserCubit(
         userCollectionRepository: getIt.get<UserCollectionRepository>(),
       ));
+  getIt.registerFactory<GameBloc>(() => GameBloc());
 }

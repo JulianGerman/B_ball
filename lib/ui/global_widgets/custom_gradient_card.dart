@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGradientCard extends StatelessWidget {
   final Widget child;
+  final double height;
 
   const CustomGradientCard({
     Key? key,
     required this.child,
+    this.height = 50,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class CustomGradientCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Container(
-        height: 50,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: const LinearGradient(

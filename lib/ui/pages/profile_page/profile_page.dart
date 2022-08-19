@@ -1,6 +1,7 @@
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
 import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
+import 'package:b_ball/global_blocs/game_bloc/game_bloc.dart';
 import 'package:b_ball/models/user.dart';
 import 'package:b_ball/ui/global_widgets/custom_indicator.dart';
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
@@ -60,6 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(height: 40.h),
           const LastGames(),
           _buildSignOutButton(),
+          SizedBox(height: 20.h),
         ],
       ),
     );
@@ -82,8 +84,9 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void _getProfile() {
+  void _getProfile() async {
     final String uid = context.read<AuthBloc>().state.user!.uid;
-    context.read<UserCubit>().getProfile(uid: uid);
+    await context.read<UserCubit>().getProfile(uid: uid);
+    context.read<GameBloc>().add(FetchGamesEvent());
   }
 }
