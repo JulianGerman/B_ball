@@ -96,7 +96,8 @@ class _PageWrapperState extends State<PageWrapper>
         inactiveColorPrimary: CustomColors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: AnimatedBuilder(
+        icon: _buildIcon(CupertinoIcons.game_controller, true),
+        inactiveIcon: AnimatedBuilder(
           animation: _gamePadAnimation,
           child: const Icon(CupertinoIcons.game_controller),
           builder: (BuildContext context, Widget? child) {
@@ -121,16 +122,16 @@ class _PageWrapperState extends State<PageWrapper>
   Container _buildIcon(IconData iconName, bool isActive) {
     return Container(
       decoration: isActive
-          ? const BoxDecoration(
+          ? BoxDecoration(
               shape: BoxShape.rectangle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 60.0,
+                  color: Colors.white.withOpacity(0.5),
+                  blurRadius: 30.0,
                 ),
                 BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 40.0,
+                  color: Colors.grey.withOpacity(0.7),
+                  blurRadius: 30.0,
                 ),
               ],
             )
