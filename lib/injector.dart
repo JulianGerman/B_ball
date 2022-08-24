@@ -2,6 +2,7 @@ import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
 import 'package:b_ball/global_blocs/game_bloc/game_bloc.dart';
 import 'package:b_ball/repositories/auth_repository.dart';
 import 'package:b_ball/repositories/user_collection_repository.dart';
+import 'package:b_ball/ui/pages/game/game_model/game_model_cubit.dart';
 import 'package:b_ball/ui/pages/password_reset_page/cubit/password_reset_cubit.dart';
 import 'package:b_ball/ui/pages/profile_page/user_cubit/user_cubit.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
@@ -35,4 +36,6 @@ void injectorSetup() {
         userCollectionRepository: getIt.get<UserCollectionRepository>(),
       ));
   getIt.registerFactory<GameBloc>(() => GameBloc());
+
+  getIt.registerFactory<GameModelCubit>(() => GameModelCubit());
 }

@@ -11,12 +11,12 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     });
 
     on<FetchGamesEvent>((event, emit) async {
-      emit(state.copyWith(gameStatus: GameStatus.loading));
+      emit(state.copyWith(gameStatus: GamesStatus.loading));
       List<int> games = [1, 2, 3, 4, 5, 6, 7, 8];
       // TODO: Change  for data fetching:
       await Future.delayed(const Duration(seconds: 2)).then((_) {
         emit(
-          state.copyWith(gameStatus: GameStatus.loaded, games: games),
+          state.copyWith(gameStatus: GamesStatus.loaded, games: games),
         );
       });
     });

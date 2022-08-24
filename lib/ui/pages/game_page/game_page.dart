@@ -1,5 +1,7 @@
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
+import 'package:b_ball/ui/pages/game/game_model/game_model_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GamePage extends StatelessWidget {
   static const String routeName = '/game';
@@ -9,9 +11,13 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: const CustomScaffoldWrapper(
+      child: CustomScaffoldWrapper(
         child: Center(
-          child: Text('Game'),
+          child: TextButton(
+            onPressed: () =>
+                context.read<GameModelCubit>().launchGameScreen(context),
+            child: const Text('Game'),
+          ),
         ),
       ),
     );

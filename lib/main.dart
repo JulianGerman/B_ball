@@ -1,4 +1,5 @@
 import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
+import 'package:b_ball/ui/pages/game/game.dart';
 import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
 import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
@@ -38,13 +39,14 @@ class MyApp extends StatelessWidget {
           theme: CustomThemeData.theme,
           home: const SplashPage(),
           routes: {
-            SignUpPage.routeName: ((context) => const SignUpPage()),
+            SignUpPage.routeName: (context) => const SignUpPage(),
             SignInPage.routeName: (context) => const SignInPage(),
             HomePage.routeName: (context) => const HomePage(),
             PasswordResetPage.routeName: (context) => const PasswordResetPage(),
             PageWrapper.routeName: (context) => const PageWrapper(),
             ProfilePage.routeName: (context) => const ProfilePage(),
             GamePage.routeName: (context) => const GamePage(),
+            Game.routeName: (context) => const Game(),
           },
         ),
       ),

@@ -1,13 +1,13 @@
 part of 'game_bloc.dart';
 
-enum GameStatus {
+enum GamesStatus {
   initial,
   loading,
   loaded,
 }
 
 class GameState extends Equatable {
-  final GameStatus gameStatus;
+  final GamesStatus gameStatus;
   //TODO: Change after game base added to List<Games>
   final List<int> games;
 
@@ -18,7 +18,7 @@ class GameState extends Equatable {
 
   factory GameState.initial() {
     return const GameState(
-      gameStatus: GameStatus.initial,
+      gameStatus: GamesStatus.initial,
       games: [],
     );
   }
@@ -27,7 +27,7 @@ class GameState extends Equatable {
   List<Object> get props => [gameStatus, games];
 
   GameState copyWith({
-    GameStatus? gameStatus,
+    GamesStatus? gameStatus,
     List<int>? games,
   }) {
     return GameState(

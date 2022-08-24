@@ -34,7 +34,7 @@ class LastGames extends StatelessWidget {
     return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
         List<int> games = state.games;
-        if (state.gameStatus == GameStatus.loading) {
+        if (state.gameStatus == GamesStatus.loading) {
           return const CustomIndicator();
         }
         if (games.isEmpty) return const Text('Empty');
