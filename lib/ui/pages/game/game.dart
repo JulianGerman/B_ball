@@ -22,27 +22,17 @@ class Game extends StatefulWidget {
 List<double>? _userAccelerometerValues;
 
 class _GameState extends State<Game> {
-  final _streamSubscriptions = <StreamSubscription<dynamic>>[];
+  late final GameBase _game;
+  
   @override
   void initState() {
     super.initState();
-    _streamSubscriptions.add(
-      userAccelerometerEvents.listen(
-        (UserAccelerometerEvent event) {
-          setState(() {
-            _userAccelerometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-      ),
-    );
+    _game = GameBase();
   }
 
-  final userAccelerometer = _userAccelerometerValues
-      ?.map((double v) => v.toStringAsFixed(1))
-      .toList();
   @override
   Widget build(BuildContext context) {
-    ;
+
     return CustomScaffoldWrapper(
       child: Center(
         child: BlocBuilder<GameModelCubit, GameModelState>(
@@ -72,8 +62,7 @@ class _GameState extends State<Game> {
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: GameWidget(
-                game:
-                    GameBase(userAccelerometerValues: userAccelerometer ?? []),
+                game: _game,
                 overlayBuilderMap: {
                   'PauseMenu': (BuildContext context, GameBase game) {
                     return Padding(

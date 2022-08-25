@@ -5,14 +5,15 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class GameBase extends FlameGame with HasCollisionDetection, TapDetector {
-  final List<String> userAccelerometerValues;
-  GameBase({required this.userAccelerometerValues});
+  List<double> _userGyroscopeValues = [];
+  UserBallComponent userBall = UserBallComponent();
 
   @override
   Color backgroundColor() => Colors.transparent.withOpacity(0.2);
-  UserBallComponent userBall = UserBallComponent();
 
   @override
   Future<void>? onLoad() async {
@@ -26,7 +27,9 @@ class GameBase extends FlameGame with HasCollisionDetection, TapDetector {
     userBall = UserBallComponent()
       ..position = size / 2
       ..anchor = Anchor.center;
-
+    gyroscopeEvents.listen((GyroscopeEvent event) {
+      _userGyroscopeValues = <double>[event.x, event.y, event.z];
+    });
     // START GAME:
     add(userBall);
   }
@@ -34,18 +37,9 @@ class GameBase extends FlameGame with HasCollisionDetection, TapDetector {
   @override
   void update(double dt) {
     super.update(dt);
-    userBall.y += 1;
-  }
-
-  @override
-  bool onTapDown(TapDownInfo info) {
-    print("Player tap down on ${info.eventPosition.game}");
-    return true;
-  }
-
-  @override
-  bool onTapUp(TapUpInfo info) {
-    print("Player tap up on ${info.eventPosition.game}");
-    return true;
+    if (_userGyroscopeValues.isNotEmpty) {
+      userBall.y += _userGyroscopeValues[0] * 10.h;
+      userBall.x += _userGyroscopeValues[1] * 5.w;
+    }
   }
 }
