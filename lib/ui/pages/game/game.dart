@@ -1,7 +1,7 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
 import 'package:b_ball/ui/pages/game/game_model/game_model_cubit.dart';
+import 'package:b_ball/ui/pages/game/widgets/game_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,44 +22,11 @@ class _GameState extends State<Game> {
         child: BlocBuilder<GameModelCubit, GameModelState>(
             builder: (context, state) {
           if (state.gameModelStatus == GameModelStatus.loading) {
-            return _buildLoader();
+            return const GameLoader();
           }
           return _buildContent();
         }),
       ),
-    );
-  }
-
-  Widget _buildLoader() {
-    const Duration fadeInDuration = Duration(milliseconds: 600);
-    const double fontSize = 60;
-    return AnimatedTextKit(
-      animatedTexts: [
-        FadeAnimatedText(
-          '3',
-          duration: fadeInDuration,
-          textStyle: CustomTypography.textStyleH1.copyWith(
-            fontSize: fontSize,
-          ),
-        ),
-        FadeAnimatedText(
-          '2',
-          duration: fadeInDuration,
-          textStyle: CustomTypography.textStyleH1.copyWith(
-            fontSize: fontSize,
-          ),
-        ),
-        FadeAnimatedText(
-          '1',
-          duration: fadeInDuration,
-          textStyle: CustomTypography.textStyleH1.copyWith(
-            fontSize: fontSize,
-          ),
-        ),
-      ],
-      onFinished: () => context.read<GameModelCubit>().startGame(),
-      totalRepeatCount: 1,
-      pause: const Duration(milliseconds: 100),
     );
   }
 
