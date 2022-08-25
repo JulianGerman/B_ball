@@ -3,6 +3,7 @@ import 'package:b_ball/ui/pages/game/game.dart';
 import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
 import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
+import 'package:flame/flame.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
@@ -17,6 +18,9 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Set device orientation to portrait only:
+  await Flame.device.setPortrait();
+  
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   injectorSetup();
   runApp(const MyApp());
