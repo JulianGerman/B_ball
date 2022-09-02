@@ -10,7 +10,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
-  late final StreamSubscription authSubscription;
+  late final StreamSubscription<dynamic> authSubscription;
   AuthBloc({
     required this.authRepository,
   }) : super(AuthState.unknown()) {
@@ -30,7 +30,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(
           state.copyWith(
             authStatus: AuthStatus.unauthenticated,
-            user: null,
           ),
         );
       }

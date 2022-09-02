@@ -5,8 +5,8 @@ import 'package:b_ball/ui/global_widgets/custom_elevated_button.dart';
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
 import 'package:b_ball/ui/pages/password_reset_page/cubit/password_reset_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:validators/validators.dart';
 
 class PasswordResetPage extends StatefulWidget {
@@ -101,7 +101,9 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 ),
                 SizedBox(height: 20.h),
                 CustomEleveatedButton(
-                    onPressed: _submit, content: Texts.sendPasswordResetEmail)
+                  onPressed: _submit,
+                  content: Texts.sendPasswordResetEmail,
+                )
               ],
             ),
           );

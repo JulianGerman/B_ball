@@ -1,11 +1,10 @@
 import 'dart:developer';
 
+import 'package:b_ball/models/custom_error.dart';
 import 'package:b_ball/models/user.dart';
+import 'package:b_ball/repositories/user_collection_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
-import 'package:b_ball/models/custom_error.dart';
-import 'package:b_ball/repositories/user_collection_repository.dart';
 
 part 'user_state.dart';
 
@@ -25,12 +24,12 @@ class UserCubit extends Cubit<UserState> {
       emit(state.copyWith(
         userStoreStatus: UserStoreStatus.success,
         user: user,
-      ));
+      ),);
     } on CustomError catch (e) {
       emit(state.copyWith(
         userStoreStatus: UserStoreStatus.failed,
         customError: e,
-      ));
+      ),);
     }
   }
 
@@ -42,7 +41,7 @@ class UserCubit extends Cubit<UserState> {
       emit(state.copyWith(
         userStoreStatus: UserStoreStatus.success,
         user: user,
-      ));
+      ),);
     } catch (_) {}
   }
 }

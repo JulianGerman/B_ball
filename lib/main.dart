@@ -1,20 +1,21 @@
-import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
-import 'package:b_ball/ui/pages/game/game.dart';
-import 'package:b_ball/ui/pages/game_page/game_page.dart';
-import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
-import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
-import 'package:flame/flame.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:b_ball/config/theme.dart';
 import 'package:b_ball/core/bloc_wrapper.dart';
 import 'package:b_ball/firebase_options.dart';
 import 'package:b_ball/injector.dart';
+import 'package:b_ball/ui/global_widgets/page_wrapper.dart';
+import 'package:b_ball/ui/pages/game/game.dart';
+import 'package:b_ball/ui/pages/game_page/game_page.dart';
 import 'package:b_ball/ui/pages/home_page/home_page.dart';
+import 'package:b_ball/ui/pages/password_reset_page/password_reset_page.dart';
+import 'package:b_ball/ui/pages/profile_page/profile_page.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_page.dart';
 import 'package:b_ball/ui/pages/signup_page/signup_page.dart';
 import 'package:b_ball/ui/pages/splash_page/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: ((context, child) => child!),
+        builder: (context, child) => child!,
         child: MaterialApp(
           title: 'Bball',
           debugShowCheckedModeBanner: false,

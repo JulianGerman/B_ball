@@ -12,33 +12,34 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffoldWrapper(
-        automaticallyImplyLeading: true,
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 100.h),
-                // LOGO PLACEHOLDER:
-                Container(
-                  height: 200,
-                  width: 200,
-                  color: CustomColors.bottomBackGroundColor,
-                  child: const Text(
-                    'LOGOPLACEHOLDER',
-                    style: CustomTypography.textStyleH4,
-                    textAlign: TextAlign.center,
-                  ),
+      automaticallyImplyLeading: true,
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 100.h),
+              // LOGO PLACEHOLDER:
+              Container(
+                height: 200,
+                width: 200,
+                color: CustomColors.bottomBackGroundColor,
+                child: const Text(
+                  'LOGOPLACEHOLDER',
+                  style: CustomTypography.textStyleH4,
+                  textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 10.h),
-                const Text(
-                  Texts.signUp,
-                  style: CustomTypography.textStyleH2,
-                ),
-                SizedBox(height: 10.h),
-                const SignUpForm(),
-              ],
-            ),
+              ),
+              SizedBox(height: 10.h),
+              const Text(
+                Texts.signUp,
+                style: CustomTypography.textStyleH2,
+              ),
+              SizedBox(height: 10.h),
+              const SignUpForm(),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -19,7 +19,6 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
@@ -67,21 +66,20 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: _obscurePassword,
                 autocorrect: false,
                 decoration: InputDecoration(
-                    labelText: Texts.password,
-                    prefixIcon: const Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                      onPressed: (() {
-                        _obscurePassword = !_obscurePassword;
-                        if (mounted) setState(() {});
-                      }),
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.password
-                            : Icons.remove_red_eye,
-                        color: CustomColors.white,
-                      ),
-                      splashColor: Colors.transparent,
-                    )),
+                  labelText: Texts.password,
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      _obscurePassword = !_obscurePassword;
+                      if (mounted) setState(() {});
+                    },
+                    icon: Icon(
+                      _obscurePassword ? Icons.password : Icons.remove_red_eye,
+                      color: CustomColors.white,
+                    ),
+                    splashColor: Colors.transparent,
+                  ),
+                ),
                 validator: (String? value) {
                   if (value == null || value.trim().isEmpty) {
                     return Texts.passwordRequired;
@@ -128,7 +126,8 @@ class _SignInFormState extends State<SignInForm> {
                         const EdgeInsets.all(0),
                       ),
                       overlayColor: MaterialStateColor.resolveWith(
-                          (states) => Colors.transparent),
+                        (states) => Colors.transparent,
+                      ),
                     ),
                     child: Text(
                       Texts.forgotPassword,

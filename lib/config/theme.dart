@@ -8,19 +8,17 @@ class CustomThemeData {
     textTheme: GoogleFonts.montserratTextTheme().copyWith(
         subtitle1: const TextStyle(
       color: Colors.white,
-    )),
+    ),),
     //TODO: Change for gradient
     scaffoldBackgroundColor: CustomColors.upperBackGroundColor,
     inputDecorationTheme: InputDecorationTheme(
       errorBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          style: BorderStyle.solid,
           color: CustomColors.buttonColor,
         ),
       ),
       focusedErrorBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          style: BorderStyle.solid,
           color: CustomColors.buttonColor,
         ),
       ),
@@ -31,7 +29,6 @@ class CustomThemeData {
       labelStyle: CustomTypography.textStyleH3,
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          style: BorderStyle.solid,
           color: Colors.white,
         ),
       ),
