@@ -26,6 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     _getProfile();
+    context.read<GameBloc>().add(FetchGamesEvent());
   }
 
   @override
@@ -87,6 +88,5 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _getProfile() async {
     final String uid = context.read<AuthBloc>().state.user!.uid;
     await context.read<UserCubit>().getProfile(uid: uid);
-    context.read<GameBloc>().add(FetchGamesEvent());
   }
 }

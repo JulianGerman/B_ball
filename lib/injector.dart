@@ -20,6 +20,7 @@ void injectorSetup() {
       firebaseAuth: FirebaseAuth.instance,
     ),
   );
+  getIt.registerFactory<UserCollectionRepository>(UserCollectionRepository.new);
   getIt.registerFactory<GameModelCubit>(GameModelCubit.new);
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(
