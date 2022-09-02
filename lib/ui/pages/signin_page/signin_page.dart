@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_redundant_argument_values, require_trailing_commas
+
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/constants/texts.dart';
 import 'package:b_ball/ui/global_widgets/custom_divider.dart';

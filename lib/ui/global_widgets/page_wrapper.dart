@@ -19,8 +19,7 @@ class _PageWrapperState extends State<PageWrapper>
     with SingleTickerProviderStateMixin {
   late final Animation<double> _gamePadAnimation;
   late final AnimationController _gamePadAnimationController;
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller = PersistentTabController();
 
   @override
   void initState() {
@@ -53,7 +52,7 @@ class _PageWrapperState extends State<PageWrapper>
     return PersistentTabView(
       context,
       controller: _controller,
-      onWillPop: ((_) async => false),
+      onWillPop: (_) async => false,
       screens: _buildScreens(),
       items: _navBarsItems(),
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
@@ -72,8 +71,6 @@ class _PageWrapperState extends State<PageWrapper>
       ),
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style15,
     );
@@ -123,7 +120,6 @@ class _PageWrapperState extends State<PageWrapper>
     return Container(
       decoration: isActive
           ? BoxDecoration(
-              shape: BoxShape.rectangle,
               boxShadow: [
                 BoxShadow(
                   color: Colors.white.withOpacity(0.5),

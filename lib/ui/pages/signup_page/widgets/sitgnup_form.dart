@@ -88,21 +88,22 @@ class _SignUpFormState extends State<SignUpForm> {
                   obscureText: _obscurePassword,
                   autocorrect: false,
                   decoration: InputDecoration(
-                      labelText: Texts.password,
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        onPressed: (() {
-                          _obscurePassword = !_obscurePassword;
-                          if (mounted) setState(() {});
-                        }),
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.password
-                              : Icons.remove_red_eye,
-                          color: CustomColors.white,
-                        ),
-                        splashColor: Colors.transparent,
-                      )),
+                    labelText: Texts.password,
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        _obscurePassword = !_obscurePassword;
+                        if (mounted) setState(() {});
+                      },
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.password
+                            : Icons.remove_red_eye,
+                        color: CustomColors.white,
+                      ),
+                      splashColor: Colors.transparent,
+                    ),
+                  ),
                   validator: (String? value) {
                     if (value == null || value.trim().isEmpty) {
                       return Texts.passwordRequired;

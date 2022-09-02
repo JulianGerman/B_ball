@@ -10,8 +10,8 @@ import 'package:b_ball/ui/pages/profile_page/widgets/last_games.dart';
 import 'package:b_ball/ui/pages/profile_page/widgets/profile_info.dart';
 import 'package:b_ball/ui/pages/profile_page/widgets/recent_balls.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName = '/profile';
@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void _getProfile() async {
+  Future<void> _getProfile() async {
     final String uid = context.read<AuthBloc>().state.user!.uid;
     await context.read<UserCubit>().getProfile(uid: uid);
     context.read<GameBloc>().add(FetchGamesEvent());

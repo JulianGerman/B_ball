@@ -13,26 +13,39 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.I;
 
 void injectorSetup() {
-  getIt.registerFactory<AuthRepository>(() => AuthRepository(
-        firebaseFirestore: FirebaseFirestore.instance,
-        firebaseAuth: FirebaseAuth.instance,
-      ));
+  getIt.registerFactory<AuthRepository>(
+    () => AuthRepository(
+      firebaseFirestore: FirebaseFirestore.instance,
+      firebaseAuth: FirebaseAuth.instance,
+    ),
+  );
   getIt.registerFactory<UserCollectionRepository>(
-      () => UserCollectionRepository());
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(
-        authRepository: getIt.get<AuthRepository>(),
-      ));
-  getIt.registerFactory<SignInCubit>(() => SignInCubit(
-        authRepository: getIt.get<AuthRepository>(),
-      ));
-  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(
-        authRepository: getIt.get<AuthRepository>(),
-      ));
-  getIt.registerFactory<PasswordResetCubit>(() => PasswordResetCubit(
-        authRepository: getIt.get<AuthRepository>(),
-      ));
-  getIt.registerFactory<UserCubit>(() => UserCubit(
-        userCollectionRepository: getIt.get<UserCollectionRepository>(),
-      ));
-  getIt.registerFactory<GameBloc>(() => GameBloc());
+    UserCollectionRepository.new,
+  );
+  getIt.registerFactory<AuthBloc>(
+    () => AuthBloc(
+      authRepository: getIt.get<AuthRepository>(),
+    ),
+  );
+  getIt.registerFactory<SignInCubit>(
+    () => SignInCubit(
+      authRepository: getIt.get<AuthRepository>(),
+    ),
+  );
+  getIt.registerFactory<SignUpCubit>(
+    () => SignUpCubit(
+      authRepository: getIt.get<AuthRepository>(),
+    ),
+  );
+  getIt.registerFactory<PasswordResetCubit>(
+    () => PasswordResetCubit(
+      authRepository: getIt.get<AuthRepository>(),
+    ),
+  );
+  getIt.registerFactory<UserCubit>(
+    () => UserCubit(
+      userCollectionRepository: getIt.get<UserCollectionRepository>(),
+    ),
+  );
+  getIt.registerFactory<GameBloc>(GameBloc.new);
 }

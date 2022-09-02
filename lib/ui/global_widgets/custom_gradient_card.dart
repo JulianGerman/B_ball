@@ -28,8 +28,6 @@ class CustomGradientCard extends StatelessWidget {
               CustomColors.bottomBackGroundColor,
               CustomColors.upperBackGroundColor,
             ],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
           ),
         ),
         child: Padding(

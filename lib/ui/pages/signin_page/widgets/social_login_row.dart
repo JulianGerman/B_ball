@@ -1,8 +1,8 @@
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/ui/pages/signin_page/signin_cubit/sign_in_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_login_buttons/social_login_buttons.dart';
 
 class SocialLoginRow extends StatelessWidget {
   const SocialLoginRow({Key? key}) : super(key: key);
@@ -29,10 +29,11 @@ class SocialLoginRow extends StatelessWidget {
   ) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(
-            color: CustomColors.buttonColor,
-          ),
-          borderRadius: BorderRadius.circular(15)),
+        border: Border.all(
+          color: CustomColors.buttonColor,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: SocialLoginButton(
         borderRadius: 15,
         backgroundColor: CustomColors.upperBackGroundColor,

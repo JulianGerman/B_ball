@@ -20,36 +20,37 @@ class BlocWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => getIt.get<AuthRepository>(),
+        ),
+        RepositoryProvider(
+          create: (context) => getIt.get<UserCollectionRepository>(),
+        ),
+      ],
+      child: MultiBlocProvider(
         providers: [
-          RepositoryProvider(
-            create: (context) => getIt.get<AuthRepository>(),
+          BlocProvider(
+            create: (context) => getIt.get<AuthBloc>(),
           ),
-          RepositoryProvider(
-            create: (context) => getIt.get<UserCollectionRepository>(),
+          BlocProvider(
+            create: (context) => getIt.get<SignInCubit>(),
           ),
+          BlocProvider(
+            create: (context) => getIt.get<PasswordResetCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<SignUpCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<UserCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<GameBloc>(),
+          )
         ],
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => getIt.get<AuthBloc>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt.get<SignInCubit>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt.get<PasswordResetCubit>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt.get<SignUpCubit>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt.get<UserCubit>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt.get<GameBloc>(),
-            )
-          ],
-          child: child,
-        ));
+        child: child,
+      ),
+    );
   }
 }

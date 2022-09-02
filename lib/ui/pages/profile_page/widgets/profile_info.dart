@@ -4,9 +4,9 @@ import 'package:b_ball/core/auth_bloc/auth_bloc.dart';
 import 'package:b_ball/models/user.dart';
 import 'package:b_ball/ui/global_widgets/custom_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -23,7 +23,7 @@ class ProfileInfo extends StatelessWidget {
           imageUrl: authUser.photoURL != null
               ? authUser.photoURL!
               : user.profileImage,
-          imageBuilder: ((context, imageProvider) {
+          imageBuilder: (context, imageProvider) {
             return Container(
               width: 120.w,
               height: 120.h,
@@ -32,7 +32,7 @@ class ProfileInfo extends StatelessWidget {
                 image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
               ),
             );
-          }),
+          },
           placeholder: (_, __) => const CustomIndicator(),
           errorWidget: (_, __, ___) => const Icon(Icons.error),
         ),
@@ -56,7 +56,10 @@ class ProfileInfo extends StatelessWidget {
           data: user.rank,
         ),
         _buildLabel(
-            title: Texts.level, data: user.level.toString(), isMain: true),
+          title: Texts.level,
+          data: user.level.toString(),
+          isMain: true,
+        ),
         _buildLabel(
           title: Texts.xpPoints,
           data: user.xpPoints.toString(),

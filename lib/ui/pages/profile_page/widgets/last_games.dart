@@ -30,7 +30,7 @@ class LastGames extends StatelessWidget {
     );
   }
 
-  BlocBuilder _buildListOfGames() {
+  BlocBuilder<StateStreamable<dynamic>, dynamic> _buildListOfGames() {
     return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
         List<int> games = state.games;
@@ -45,7 +45,7 @@ class LastGames extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: games.length,
-            itemBuilder: ((context, index) {
+            itemBuilder: (context, index) {
               return CustomGradientCard(
                 height: 150.h,
                 child: Column(
@@ -61,7 +61,6 @@ class LastGames extends StatelessWidget {
                     //BALL MODEL!
                     const Spacer(),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const Text(
                           '15/11/2022',
@@ -77,7 +76,7 @@ class LastGames extends StatelessWidget {
                   ],
                 ),
               );
-            }),
+            },
           ),
         );
       },
