@@ -9,7 +9,7 @@ part 'game_model_state.dart';
 class GameModelCubit extends Cubit<GameModelState> {
   GameModelCubit() : super(GameModelState.initial());
 
-  void launchGameScreen(BuildContext context) async {
+  Future<void> launchGameScreen(BuildContext context) async {
     emit(state.copyWith(gameModelStatus: GameModelStatus.loading));
     pushNewScreen(
       context,

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:b_ball/config/colors.dart';
 import 'package:b_ball/ui/global_widgets/custom_scaffold_wrapper.dart';
 import 'package:b_ball/ui/pages/game/game_model/game_model_cubit.dart';
@@ -9,7 +7,6 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sensors_plus/sensors_plus.dart';
 
 class Game extends StatefulWidget {
   static const String routeName = '/gameModule';
@@ -19,11 +16,9 @@ class Game extends StatefulWidget {
   State<Game> createState() => _GameState();
 }
 
-List<double>? _userAccelerometerValues;
-
 class _GameState extends State<Game> {
   late final GameBase _game;
-  
+
   @override
   void initState() {
     super.initState();
@@ -32,16 +27,16 @@ class _GameState extends State<Game> {
 
   @override
   Widget build(BuildContext context) {
-
     return CustomScaffoldWrapper(
       child: Center(
         child: BlocBuilder<GameModelCubit, GameModelState>(
-            builder: (context, state) {
-          if (state.gameModelStatus == GameModelStatus.loading) {
-            return const GameLoader();
-          }
-          return _buildContent();
-        }),
+          builder: (context, state) {
+            if (state.gameModelStatus == GameModelStatus.loading) {
+              return const GameLoader();
+            }
+            return _buildContent();
+          },
+        ),
       ),
     );
   }
