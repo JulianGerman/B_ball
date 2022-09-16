@@ -15,7 +15,7 @@ class SocialLoginRow extends StatelessWidget {
         //TODO: Add fb, github signIn
         _buildButton(
           SocialLoginButtonType.google,
-          () => context.read<SignInCubit>().signInWithGoogle(),
+          () async => context.read<SignInCubit>().signInWithGoogle(),
         ),
         _buildButton(SocialLoginButtonType.facebook, () => null),
         _buildButton(SocialLoginButtonType.github, () => null),

@@ -23,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
     _getProfile();
     context.read<GameBloc>().add(FetchGamesEvent());

@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.authStatus == AuthStatus.unauthenticated) {
           //CLEAR THE STACK:
           Navigator.pushNamedAndRemoveUntil(context, SignInPage.routeName,

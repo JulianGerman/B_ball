@@ -67,7 +67,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: BlocConsumer<PasswordResetCubit, PasswordResetState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.passwordResetStatus == PasswordResetStatus.error) {
             errorDialog(context, state.error);
           }
@@ -112,7 +112,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     );
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
     final form = _formKey.currentState;

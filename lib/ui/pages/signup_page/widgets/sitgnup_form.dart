@@ -30,7 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.signUpStatus == SignUpStatus.error) {
           errorDialog(context, state.customError);
         }
@@ -154,7 +154,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 

@@ -6,7 +6,7 @@ import 'package:b_ball/models/custom_error.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void errorDialog(BuildContext context, CustomError e) {
+Future<void> errorDialog(BuildContext context, CustomError e) async {
   showDialog(
     context: context,
     builder: (context) {

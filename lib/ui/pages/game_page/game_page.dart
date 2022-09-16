@@ -14,7 +14,7 @@ class GamePage extends StatelessWidget {
       child: CustomScaffoldWrapper(
         child: Center(
           child: TextButton(
-            onPressed: () =>
+            onPressed: () async =>
                 context.read<GameModelCubit>().launchGameScreen(context),
             child: const Text('Game'),
           ),

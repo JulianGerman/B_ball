@@ -30,7 +30,7 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.signingStatus == SigningStatus.error) {
           errorDialog(context, state.customError);
         }
@@ -107,7 +107,7 @@ class _SignInFormState extends State<SignInForm> {
                 backgroundColor: CustomColors.buttonColorDarker,
                 onPressed: state.signingStatus == SigningStatus.submitting
                     ? null
-                    : () =>
+                    : () async =>
                         Navigator.of(context).pushNamed(SignUpPage.routeName),
                 content: state.signingStatus == SigningStatus.submitting
                     ? Texts.loading
@@ -117,7 +117,7 @@ class _SignInFormState extends State<SignInForm> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () => Navigator.pushNamed(
+                    onPressed: () async => Navigator.pushNamed(
                       context,
                       PasswordResetPage.routeName,
                     ),
