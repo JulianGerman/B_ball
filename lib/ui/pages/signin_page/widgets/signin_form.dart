@@ -145,7 +145,7 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     _autovalidateMode = AutovalidateMode.always;
     if (mounted) setState(() {});
 
